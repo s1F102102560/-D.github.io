@@ -11,11 +11,28 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --color-primary: #E86A33;
+            --color-secondary: #7EB6D8;
+            --color-background: #F5F5F0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F5F5F0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-background);
             color: #333;
             line-height: 1.6;
+        }
+
+        /* Page System */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 100px 2rem 2rem;
+        }
+
+        .page.active {
+            display: block;
         }
 
         /* Navigation */
@@ -42,7 +59,8 @@
         .nav-logo {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #7EB6D8;
+            color: var(--color-secondary);
+            cursor: pointer;
             text-decoration: none;
         }
 
@@ -57,11 +75,12 @@
             color: #666;
             font-weight: 500;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #E86A33;
+            color: var(--color-primary);
         }
 
         .mobile-menu-btn {
@@ -73,44 +92,75 @@
             color: #666;
         }
 
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 100px 2rem 2rem;
+        /* Container */
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s forwards;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
         }
 
-        /* Retro TV */
+        .section-title-bar {
+            width: 4px;
+            height: 3rem;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            font-weight: 900;
+        }
+
+        .section-title p {
+            font-size: 0.875rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #d55d2a;
+        }
+
+        /* Home Page */
+        .home-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
         .retro-tv {
             max-width: 500px;
             margin: 0 auto;
-            animation: scaleIn 0.6s ease-out;
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
         }
 
         .tv-frame {
-            background: #E86A33;
+            background: var(--color-primary);
             border-radius: 2rem;
             padding: 1.5rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -125,121 +175,165 @@
         .tv-screen {
             background: white;
             border-radius: 1rem;
-            padding: 3rem;
-            min-height: 400px;
+            aspect-ratio: 21/9;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        .tv-content {
             text-align: center;
+            padding: 1rem 1.5rem;
         }
 
-        .tv-stand {
-            width: 100px;
-            height: 16px;
-            background: #E86A33;
-            border-radius: 0 0 8px 8px;
-            margin: 0.5rem auto 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Home Page */
-        .home-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        .home-title {
-            font-size: 4rem;
+        .tv-title {
+            font-size: 1.75rem;
             font-weight: 900;
-            color: #7EB6D8;
-            line-height: 1.1;
+            color: var(--color-secondary);
+            letter-spacing: -0.02em;
         }
 
-        .home-subtitle {
-            margin-top: 1.5rem;
+        .tv-subtitle {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-top: 0.25rem;
+        }
+
+        .tv-info {
+            margin-top: 0.5rem;
+        }
+
+        .info-main {
+            font-size: 0.75rem;
             color: #666;
         }
 
-        .student-info {
-            color: #E86A33;
-            margin-top: 0.5rem;
+        .info-sub {
+            font-size: 0.625rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+
+        .tv-stand {
+            width: 6rem;
+            height: 1rem;
+            background: var(--color-primary);
+            border-radius: 0 0 0.5rem 0.5rem;
+            margin: 0.5rem auto 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .link-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .link-card {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             background: white;
-            border-radius: 1rem;
-            text-decoration: none;
-            color: inherit;
+            border-radius: 0.75rem;
+            border: none;
+            width: 100%;
+            cursor: pointer;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             transition: all 0.3s;
-            margin-bottom: 1rem;
+            text-align: left;
         }
 
         .link-card:hover {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transform: translateX(5px);
+            transform: translateY(-2px);
         }
 
         .link-icon {
-            width: 48px;
-            height: 48px;
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        /* Section Title */
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+        .link-content {
+            flex: 1;
         }
 
-        .section-title-bar {
-            width: 4px;
-            height: 48px;
-            background: #E86A33;
-            border-radius: 2px;
+        .link-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #7EB6D8;
-            font-weight: 900;
-        }
-
-        .section-title p {
+        .link-desc {
             font-size: 0.875rem;
             color: #999;
-            margin-top: 0.25rem;
         }
 
-        /* Profile */
+        .link-arrow {
+            color: #ccc;
+            font-size: 1.25rem;
+        }
+
+        .decorative-icon {
+            position: fixed;
+            font-size: 4rem;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .icon-1 {
+            right: 2rem;
+            top: 8rem;
+        }
+
+        .icon-2 {
+            right: 3rem;
+            bottom: 8rem;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Profile Page */
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            margin-top: 2rem;
+            align-items: start;
         }
 
         .profile-image {
-            aspect-ratio: 4/5;
-            background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #e5e5e5 0%, #d4d4d4 100%);
             border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         .profile-image-placeholder {
@@ -247,12 +341,21 @@
             color: #999;
         }
 
+        .profile-image-placeholder .icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
         .profile-name {
             font-size: 3rem;
             font-weight: 900;
-            color: #7EB6D8;
+            color: var(--color-secondary);
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-items {
+            margin-bottom: 2.5rem;
         }
 
         .profile-item {
@@ -262,115 +365,171 @@
             margin-bottom: 1rem;
         }
 
-        .profile-item-bar {
+        .item-bar {
             width: 4px;
-            height: 24px;
-            background: #E86A33;
+            height: 1.5rem;
+            background: var(--color-primary);
             border-radius: 2px;
         }
 
         .profile-about {
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .profile-about h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
             color: #333;
+            margin-bottom: 1rem;
         }
 
-        /* Works */
-        .works-grid {
+        .profile-about h3 span {
+            font-size: 1.5rem;
+        }
+
+        .profile-about p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Works Page */
+        .work-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .work-card-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .works-content h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: #333;
+            gap: 0;
         }
 
         .works-video {
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #d0d0d0, #a0a0a0);
-            border-radius: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            overflow: hidden;
+            padding: 2rem;
         }
 
-        .play-button {
-            width: 64px;
-            height: 64px;
+        .badge {
+            position: absolute;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .badge-live {
+            top: 1rem;
+            left: 1rem;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        .badge-latest {
+            top: 1rem;
+            right: 1rem;
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+        }
+
+        .badge-award {
+            top: 1rem;
+            right: 1rem;
+            background: #fbbf24;
+            color: #78350f;
+        }
+
+        .video-content {
+            text-align: center;
+        }
+
+        .play-btn {
+            width: 4rem;
+            height: 4rem;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            transition: transform 0.3s;
+            font-size: 1.5rem;
+            color: #667eea;
+            margin: 0 auto 1rem;
         }
 
-        .works-video:hover .play-button {
-            transform: scale(1.1);
-        }
-
-        .badge {
-            position: absolute;
-            top: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: bold;
-        }
-
-        .badge-live {
-            left: 1rem;
-            background: #dc2626;
+        .video-title {
             color: white;
+            font-weight: 600;
         }
 
-        .badge-new {
-            right: 1rem;
-            background: #dc2626;
-            color: white;
+        .video-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
-        .badge-award {
-            top: -1rem;
-            right: -1rem;
-            background: #fbbf24;
-            color: #78350f;
+        .work-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .work-header {
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .work-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        .work-header h3 {
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .work-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .skills-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
+        .tag {
+            padding: 0.375rem 0.875rem;
             background: rgba(126, 182, 216, 0.1);
-            color: #7EB6D8;
-            border-radius: 2rem;
-            margin-right: 0.5rem;
-            margin-top: 0.5rem;
+            color: var(--color-secondary);
+            border-radius: 1rem;
             font-size: 0.875rem;
+            font-weight: 500;
         }
 
-        /* Skills */
+        .tag-orange {
+            background: rgba(232, 106, 51, 0.1);
+            color: var(--color-primary);
+        }
+
+        /* Skills Page */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .skill-card {
@@ -378,11 +537,6 @@
             border-radius: 1rem;
             padding: 1.5rem;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s;
-        }
-
-        .skill-card:hover {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .skill-header {
@@ -411,91 +565,158 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            color: #666;
         }
 
         .skill-bar {
-            height: 8px;
+            height: 0.5rem;
             background: #f0f0f0;
-            border-radius: 4px;
+            border-radius: 1rem;
             overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
-            border-radius: 4px;
-            transition: width 1s ease-out;
+            background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+            border-radius: 1rem;
         }
 
-        /* Contact */
-        .contact-card {
-            max-width: 700px;
-            margin: 2rem auto;
+        .tools-section,
+        .education-section {
             background: white;
-            border-radius: 3rem;
-            padding: 3rem;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .tool-item {
+            padding: 0.75rem 1rem;
+            background: var(--color-background);
+            border-radius: 0.5rem;
             text-align: center;
-            border: 2px solid #10b981;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .education-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .education-icon {
+            font-size: 2rem;
+        }
+
+        .education-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.125rem;
+        }
+
+        .education-period {
+            color: #999;
+            font-size: 0.875rem;
+        }
+
+        /* Contact Page */
+        .contact-intro {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 1rem;
-            margin: 1.5rem 0;
-            font-size: 1.5rem;
+            padding: 1rem 0;
         }
 
-        .contact-item a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
+        .contact-item:not(:last-child) {
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .contact-item a:hover {
-            color: #E86A33;
+        .contact-icon {
+            font-size: 2rem;
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 2rem;
-            text-decoration: none;
+        .contact-label {
+            font-size: 0.875rem;
+            color: #999;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-value {
+            font-size: 1.125rem;
             font-weight: 600;
-            transition: all 0.3s;
-            margin-top: 1rem;
+            color: #333;
         }
 
-        .btn-primary {
-            background: #E86A33;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #d55d2a;
-        }
-
-        .btn-secondary {
-            background: #7EB6D8;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #6da5c7;
-        }
-
-        /* Footer */
-        footer {
-            background: white;
-            padding: 2rem;
+        .contact-arrow {
             text-align: center;
-            border-top: 1px solid #e0e0e0;
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin: 2rem 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        .thank-you {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .thank-you-text {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            font-size: 0.875rem;
+            border-top: 1px solid #e5e5e5;
             margin-top: 3rem;
+        }
+
+        .contact-footer p {
+            margin: 0.25rem 0;
         }
 
         /* Responsive */
@@ -510,36 +731,33 @@
 
             .home-grid,
             .profile-grid,
-            .works-grid,
+            .work-card-inner {
+                grid-template-columns: 1fr;
+            }
+
             .skills-grid {
                 grid-template-columns: 1fr;
             }
 
-            .home-title {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .decorative-icon {
+                display: none;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .tv-title {
+                font-size: 1.5rem;
+            }
+
+            .profile-name {
                 font-size: 2.5rem;
             }
-
-            section {
-                padding: 80px 1rem 1rem;
-            }
-        }
-
-        /* Animations */
-        .bounce {
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(10px);
-            }
-        }
-
-        .hidden {
-            display: none;
         }
     </style>
 </head>
@@ -547,487 +765,413 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href__="#home" class="nav-logo">KEITA WADA</a>
+            <a class="nav-logo" onclick="showPage('home')">KEITA WADA</a>
             <ul class="nav-links">
-                <li><a href__="#home" class="nav-link active">Home</a></li>
-                <li><a href__="#profile" class="nav-link">Profile</a></li>
-                <li><a href__="#works1" class="nav-link">Works</a></li>
-                <li><a href__="#skills" class="nav-link">Skills</a></li>
-                <li><a href__="#contact" class="nav-link">Contact</a></li>
+                <li><a onclick="showPage('home')" data-page="home" class="active">Home</a></li>
+                <li><a onclick="showPage('profile')" data-page="profile">Profile</a></li>
+                <li><a onclick="showPage('works')" data-page="works">Works</a></li>
+                <li><a onclick="showPage('skills')" data-page="skills">Skills</a></li>
+                <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="home-grid">
-            <div>
-                <div class="retro-tv">
-                    <div class="tv-frame">
-                        <div class="tv-bezel">
-                            <div class="tv-screen">
-                                <div>
-                                    <h1 class="home-title">KEITA<br>WADA</h1>
-                                    <div class="home-subtitle">
-                                        <p style="font-size: 1.25rem; font-weight: 600;">Portfolio</p>
-                                        <p class="student-info">1F10210256 和田慶太</p>
-                                        <p style="color: #999; font-size: 0.875rem;">東洋大学 情報連携学部</p>
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="home-grid">
+                <div>
+                    <div class="retro-tv">
+                        <div class="tv-frame">
+                            <div class="tv-bezel">
+                                <div class="tv-screen">
+                                    <div class="tv-content">
+                                        <h1 class="tv-title">KEITA WADA</h1>
+                                        <p class="tv-subtitle">映像デザイナー</p>
+                                        <div class="tv-info">
+                                            <p class="info-main">Portfolio</p>
+                                            <p class="info-sub">1F10210256 和田慶太 | 東洋大学 情報連携学部</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="tv-stand"></div>
                     </div>
-                    <div class="tv-stand"></div>
                 </div>
-            </div>
-            
-            <div>
-                <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">ようこそ、私のポートフォリオへ</h2>
-                <p style="color: #666; margin-bottom: 2rem;">
-                    人を感動させるものを作ることが好きです。<br>
-                    映像制作を通じて、多くの人々の心に残る作品を作りたいと考えています。
-                </p>
-                
-                <a href__="#profile" class="link-card">
-                    <div class="link-icon" style="background: rgba(126, 182, 216, 0.1);">
-                        <span style="color: #7EB6D8;">👤</span>
-                    </div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600;">Profile</p>
-                        <p style="font-size: 0.875rem; color: #999;">自己紹介を見る</p>
-                    </div>
-                    <span style="color: #999;">→</span>
-                </a>
-                
-                <a href__="#works1" class="link-card">
-                    <div class="link-icon" style="background: rgba(232, 106, 51, 0.1);">
-                        <span style="color: #E86A33;">📹</span>
-                    </div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600;">Works</p>
-                        <p style="font-size: 0.875rem; color: #999;">作品を見る</p>
-                    </div>
-                    <span style="color: #999;">→</span>
-                </a>
-                
-                <a href__="#contact" class="link-card">
-                    <div class="link-icon" style="background: rgba(16, 185, 129, 0.1);">
-                        <span style="color: #10b981;">✉️</span>
-                    </div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600;">Contact</p>
-                        <p style="font-size: 0.875rem; color: #999;">お問い合わせ</p>
-                    </div>
-                    <span style="color: #999;">→</span>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Profile Section -->
-    <section id="profile">
-        <div class="section-title">
-            <div class="section-title-bar"></div>
-            <div>
-                <h2>Profile</h2>
-                <p>プロフィール</p>
-            </div>
-        </div>
-        
-        <div class="profile-grid">
-            <div class="profile-image">
-                <div class="profile-image-placeholder">
-                    <div style="font-size: 5rem;">👤</div>
-                    <p style="margin-top: 1rem;">Profile Photo</p>
-                </div>
-            </div>
-            
-            <div>
-                <h2 class="profile-name">KEITA<br>WADA</h2>
-                
-                <div class="profile-item">
-                    <div class="profile-item-bar"></div>
-                    <p>千葉県出身</p>
-                </div>
-                <div class="profile-item">
-                    <div class="profile-item-bar"></div>
-                    <p>IT・プログラミングを学習</p>
-                </div>
-                <div class="profile-item">
-                    <div class="profile-item-bar"></div>
-                    <p>高校までソフトテニス部に所属</p>
-                </div>
-                
-                <div class="profile-about">
-                    <h3>好きなこと：<br>
-                    <span style="font-size: 1.5rem;">人を感動させるものを作ること</span></h3>
-                    <p style="color: #666;">
-                        昔から自分の作ったものや映像で家族や友人が笑ったり、
-                        心を動かすことが好きでした。この経験から、一番好き
-                        であったテレビ制作を通して、多くの人々の心に残る作
-                        品を作りたいと考えています。
-                    </p>
-                </div>
-                
-                <a href__="#works1" class="btn btn-primary">作品を見る →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Works 1 Section -->
-    <section id="works1">
-        <div class="section-title">
-            <div class="section-title-bar"></div>
-            <div>
-                <h2>Works</h2>
-                <p>映像作品の実績1</p>
-            </div>
-        </div>
-        
-        <div class="works-grid">
-            <div class="works-content">
-                <h3>自己PR 作成</h3>
-                <p style="color: #666; margin-bottom: 1rem;">
-                    企業向けの自己紹介として、
-                    約1分の自己PR動画をYouTube
-                    で作成しました。
-                </p>
-                <p style="color: #666; margin-bottom: 1rem;">
-                    企画から撮影、編集まで自身
-                    で行いました。
-                </p>
-                
-                <div style="margin-top: 1.5rem;">
-                    <span class="skills-tag">企画</span>
-                    <span class="skills-tag">撮影</span>
-                    <span class="skills-tag">編集</span>
-                    <span class="skills-tag">YouTube</span>
-                </div>
-            </div>
-            
-            <div class="works-video">
-                <div class="badge badge-live">● LIVE</div>
-                <div class="badge badge-new">最新</div>
                 <div>
-                    <div class="play-button">▶</div>
-                    <p style="color: white; margin-top: 1rem;">自己PR動画</p>
-                </div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 2rem; text-align: right;">
-            <a href__="#works2" class="btn btn-primary">次の作品を見る →</a>
-        </div>
-    </section>
+                    <h2 class="welcome-title">ようこそ、私のポートフォリオへ</h2>
+                    <p class="welcome-text">
+                        人を感動させるものを作ることが好きです。<br>
+                        映像制作を通じて、多くの人々の心に残る作品を作りたいと考えています。
+                    </p>
 
-    <!-- Works 2 Section -->
-    <section id="works2">
-        <div class="section-title">
-            <div class="section-title-bar"></div>
-            <div>
-                <h2>Works</h2>
-                <p>映像作品の実績2</p>
-            </div>
-        </div>
-        
-        <div class="works-grid">
-            <div style="position: relative;">
-                <div class="works-video" style="aspect-ratio: 4/3;">
-                    <div class="badge badge-award">🏆 最優秀賞</div>
-                    <div>
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">🎴</div>
-                        <p style="color: white;">トランプドミノ作品</p>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">ピタゴラスイッチ風映像</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="works-content">
-                <h3>映像作品の実績2</h3>
-                <p style="color: #666; font-size: 1.125rem; line-height: 1.8;">
-                    高校時代映像祭にて作品の
-                    企画・制作に携わり、ピタゴラ
-                    スイッチを基に、最後はトラン
-                    プを倒し3年5組の文字を浮かび
-                    上がらせる演出をしました。
-                </p>
-                <p style="color: #666; font-size: 1.125rem; margin-top: 1rem; font-weight: bold;">
-                    その結果、学年最優秀賞を受賞
-                    しました。
-                </p>
-                
-                <div style="margin-top: 1.5rem;">
-                    <span class="skills-tag" style="background: rgba(232, 106, 51, 0.1); color: #E86A33;">企画</span>
-                    <span class="skills-tag" style="background: rgba(232, 106, 51, 0.1); color: #E86A33;">制作</span>
-                    <span class="skills-tag" style="background: rgba(232, 106, 51, 0.1); color: #E86A33;">チームワーク</span>
-                    <span class="skills-tag" style="background: rgba(232, 106, 51, 0.1); color: #E86A33;">演出</span>
-                </div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 2rem; text-align: right;">
-            <a href__="#skills" class="btn btn-primary">スキルを見る →</a>
-        </div>
-    </section>
+                    <div class="link-cards">
+                        <button class="link-card" onclick="showPage('profile')">
+                            <div class="link-icon" style="background: rgba(126, 182, 216, 0.1);">👤</div>
+                            <div class="link-content">
+                                <p class="link-title">Profile</p>
+                                <p class="link-desc">自己紹介を見る</p>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </button>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="section-title">
-            <div class="section-title-bar"></div>
-            <div>
-                <h2>Skills</h2>
-                <p>スキル・能力</p>
-            </div>
-        </div>
-        
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon" style="background: #3b82f6;">💻</div>
-                    <h3>プログラミング</h3>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>Python</span>
-                        <span style="color: #999;">70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%; background: #3b82f6;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>JavaScript</span>
-                        <span style="color: #999;">60%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 60%; background: #3b82f6;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>HTML/CSS</span>
-                        <span style="color: #999;">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%; background: #3b82f6;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon" style="background: #E86A33;">📹</div>
-                    <h3>映像制作</h3>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>企画・構成</span>
-                        <span style="color: #999;">85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%; background: #E86A33;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>撮影</span>
-                        <span style="color: #999;">75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%; background: #E86A33;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>編集</span>
-                        <span style="color: #999;">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%; background: #E86A33;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon" style="background: #eab308;">💡</div>
-                    <h3>クリエイティブ</h3>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>アイデア発想</span>
-                        <span style="color: #999;">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%; background: #eab308;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>プレゼンテーション</span>
-                        <span style="color: #999;">75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%; background: #eab308;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-label">
-                        <span>チームワーク</span>
-                        <span style="color: #999;">85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%; background: #eab308;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem;">
-            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 1.5rem;">使用ツール・ソフトウェア</h3>
-            <div>
-                <span class="skills-tag">Adobe Premiere Pro</span>
-                <span class="skills-tag">Adobe After Effects</span>
-                <span class="skills-tag">DaVinci Resolve</span>
-                <span class="skills-tag">Canva</span>
-                <span class="skills-tag">VS Code</span>
-                <span class="skills-tag">Git</span>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem; background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem;">学歴</h3>
-            <div style="margin-bottom: 1rem;">
-                <div style="display: flex; gap: 1rem; align-items: start;">
-                    <div style="width: 12px; height: 12px; background: #7EB6D8; border-radius: 50%; margin-top: 8px;"></div>
-                    <div>
-                        <p style="font-weight: 600;">東洋大学 情報連携学部</p>
-                        <p style="font-size: 0.875rem; color: #999;">IT・プログラミングを学習中</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div style="display: flex; gap: 1rem; align-items: start;">
-                    <div style="width: 12px; height: 12px; background: #E86A33; border-radius: 50%; margin-top: 8px;"></div>
-                    <div>
-                        <p style="font-weight: 600;">高校時代</p>
-                        <p style="font-size: 0.875rem; color: #999;">ソフトテニス部所属・映像祭で最優秀賞受賞</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 2rem; text-align: right;">
-            <a href__="#contact" class="btn btn-primary">お問い合わせ →</a>
-        </div>
-    </section>
+                        <button class="link-card" onclick="showPage('works')">
+                            <div class="link-icon" style="background: rgba(232, 106, 51, 0.1);">🎬</div>
+                            <div class="link-content">
+                                <p class="link-title">Works</p>
+                                <p class="link-desc">作品を見る</p>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </button>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-title">
-            <div class="section-title-bar"></div>
-            <div>
-                <h2>Contact</h2>
-                <p>お問い合わせ</p>
+                        <button class="link-card" onclick="showPage('contact')">
+                            <div class="link-icon" style="background: rgba(34, 197, 94, 0.1);">✉️</div>
+                            <div class="link-content">
+                                <p class="link-title">Contact</p>
+                                <p class="link-desc">お問い合わせ</p>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorative-icon icon-1">🎥</div>
+            <div class="decorative-icon icon-2">📹</div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile" class="page">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <div>
+                    <h2>Profile</h2>
+                    <p>プロフィール</p>
+                </div>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-image">
+                    <div class="profile-image-placeholder">
+                        <div class="icon">👤</div>
+                        <p>Profile Photo</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="profile-name">KEITA<br>WADA</h2>
+                    
+                    <div class="profile-items">
+                        <div class="profile-item">
+                            <div class="item-bar"></div>
+                            <p>千葉県出身</p>
+                        </div>
+                        <div class="profile-item">
+                            <div class="item-bar"></div>
+                            <p>IT・プログラミングを学習</p>
+                        </div>
+                        <div class="profile-item">
+                            <div class="item-bar"></div>
+                            <p>高校までソフトテニス部に所属</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-about">
+                        <h3>好きなこと：<br><span>人を感動させるものを作ること</span></h3>
+                        <p>
+                            昔から自分の作ったものや映像で家族や友人が笑ったり、
+                            心を動かすことが好きだった。この経験から、一番好き
+                            であったテレビ制作を通して、多くの人々の心に残る作
+                            品を作りたいと考えている。
+                        </p>
+                    </div>
+
+                    <button class="btn" onclick="showPage('works')">作品を見る →</button>
+                </div>
             </div>
         </div>
-        
-        <p style="text-align: center; font-size: 1.125rem; color: #666; margin: 2rem 0;">
-            下記のメールアドレスにご連絡ください
-        </p>
-        
-        <div class="contact-card">
-            <div class="contact-item">
-                <span style="color: #E86A33;">✉️</span>
-                <a href__="mailto:s1f102102560@iniad.org">s1f102102560@iniad.org</a>
+    </div>
+
+    <!-- Works Page -->
+    <div id="works" class="page">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <div>
+                    <h2>Works</h2>
+                    <p>映像作品の実績</p>
+                </div>
             </div>
-            <div class="contact-item">
-                <span style="color: #E86A33;">📱</span>
-                <span>090-0000-0000</span>
+
+            <div class="work-card">
+                <div class="work-card-inner">
+                    <div class="works-video">
+                        <div class="badge badge-live">● LIVE</div>
+                        <div class="badge badge-latest">最新</div>
+                        <div class="video-content">
+                            <div class="play-btn">▶</div>
+                            <p class="video-title">自己PR動画</p>
+                        </div>
+                    </div>
+                    <div class="work-content">
+                        <div class="work-header">
+                            <span class="work-number">#1</span>
+                            <h3>自己PR動画</h3>
+                        </div>
+                        <p class="work-description">
+                            企業向けの自己紹介として、約1分の自己PR動画をYouTubeで作成した。企画から撮影、編集まで自身で行った。
+                        </p>
+                        <div class="tags">
+                            <span class="tag">企画</span>
+                            <span class="tag">撮影</span>
+                            <span class="tag">編集</span>
+                            <span class="tag">YouTube</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-inner">
+                    <div class="works-video">
+                        <div class="badge badge-award">🏆 最優秀賞</div>
+                        <div class="video-content">
+                            <div class="video-emoji">🎴</div>
+                            <p class="video-title">トランプドミノ作品</p>
+                        </div>
+                    </div>
+                    <div class="work-content">
+                        <div class="work-header">
+                            <span class="work-number">#2</span>
+                            <h3>トランプドミノ映像</h3>
+                        </div>
+                        <p class="work-description">
+                            高校時代の映像祭にて企画・制作に携わった。ピタゴラスイッチを基に、最後はトランプを倒し3年5組の文字を浮かび上がらせる演出を行った。その結果、学年最優秀賞を受賞した。
+                        </p>
+                        <div class="tags">
+                            <span class="tag tag-orange">企画</span>
+                            <span class="tag tag-orange">制作</span>
+                            <span class="tag tag-orange">チームワーク</span>
+                            <span class="tag tag-orange">演出</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 2rem;">
+                <button class="btn" onclick="showPage('skills')">スキルを見る →</button>
             </div>
         </div>
-        
-        <div style="text-align: center; margin-top: 3rem;">
-            <p style="color: #666; margin-bottom: 1.5rem;">
-                ポートフォリオをご覧いただきありがとうございました。<br>
-                お気軽にお問い合わせください。
+    </div>
+
+    <!-- Skills Page -->
+    <div id="skills" class="page">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <div>
+                    <h2>Skills</h2>
+                    <p>できること</p>
+                </div>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon" style="background: #3b82f6;">💻</div>
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>HTML/CSS</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>JavaScript</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>React</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon" style="background: #E86A33;">🎬</div>
+                        <h3>Video Production</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>動画編集</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>企画・構成</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>撮影</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon" style="background: #a855f7;">🎨</div>
+                        <h3>Creative</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>デザイン</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <span>ストーリーテリング</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="section-subtitle">使用ツール</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">Adobe Premiere Pro</div>
+                    <div class="tool-item">Final Cut Pro</div>
+                    <div class="tool-item">Adobe After Effects</div>
+                    <div class="tool-item">Photoshop</div>
+                    <div class="tool-item">VS Code</div>
+                    <div class="tool-item">Figma</div>
+                </div>
+            </div>
+
+            <div class="education-section">
+                <h3 class="section-subtitle">学歴</h3>
+                <div class="education-item">
+                    <div class="education-icon">🎓</div>
+                    <div>
+                        <p class="education-title">東洋大学 情報連携学部</p>
+                        <p class="education-period">2021年 - 現在</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 2rem;">
+                <button class="btn" onclick="showPage('contact')">お問い合わせ →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <div>
+                    <h2>Contact</h2>
+                    <p>お問い合わせ</p>
+                </div>
+            </div>
+
+            <p class="contact-intro">
+                ご質問やお仕事のご依頼など、<br>
+                お気軽にご連絡ください。
             </p>
-            <a href__="#home" class="btn btn-secondary">ホームに戻る →</a>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p style="font-size: 0.875rem; color: #999;">
-            © 2024 KEITA WADA Portfolio. All rights reserved.
-        </p>
-        <p style="font-size: 0.75rem; color: #ccc; margin-top: 0.5rem;">
-            1F10210256 和田慶太 | 東洋大学 情報連携学部
-        </p>
-    </footer>
+            <div class="contact-card">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <p class="contact-label">Email</p>
+                        <p class="contact-value">keita.wada@example.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <p class="contact-label">Phone</p>
+                        <p class="contact-value">080-1234-5678</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-arrow">↓</div>
+
+            <div class="thank-you">
+                <p class="thank-you-text">ポートフォリオをご覧いただき<br>ありがとうございました</p>
+                <button class="btn" onclick="showPage('home')">ホームに戻る</button>
+            </div>
+
+            <footer class="contact-footer">
+                <p>© 2026 KEITA WADA</p>
+                <p>1F10210256 和田慶太 | 東洋大学 情報連携学部</p>
+            </footer>
+        </div>
+    </div>
 
     <script>
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        function showPage(pageName) {
+            // すべてのページを非表示
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-        });
-
-        // Active nav link on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
             
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
+            // 指定されたページを表示
+            document.getElementById(pageName).classList.add('active');
+            
+            // ナビゲーションのアクティブ状態を更新
+            document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
+                if (link.getAttribute('data-page') === pageName) {
                     link.classList.add('active');
                 }
             });
-        });
-
-        // Animate skill bars on scroll
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.skill-progress');
-                    progressBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
-                    });
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.skill-card').forEach(card => {
-            observer.observe(card);
-        });
+            
+            // ページトップにスクロール
+            window.scrollTo(0, 0);
+        }
     </script>
 </body>
 </html>
